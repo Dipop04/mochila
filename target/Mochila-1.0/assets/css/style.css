@@ -834,12 +834,22 @@ section {
 .courses .course-item {
   border-radius: 5px;
   border: 1px solid #eef0ef;
+  margin-bottom: 10px;
 }
 
 .courses .course-content {
   padding: 15px;
 }
 
+.courses .img-tarjeta{
+  max-height: auto;
+  width: auto;
+  text-align: center !important;
+}
+
+#contenedorNegocios {
+  display: contents !important;
+}
 .courses .course-content h3 {
   font-weight: 700;
   font-size: 20px;

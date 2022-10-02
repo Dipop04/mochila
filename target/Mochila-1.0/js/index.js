@@ -33,7 +33,7 @@ function autenticarUsuario() {
             if (parsedResult != false) {
                 $("#login-error").addClass("d-none");
                 let username = parsedResult['username'];
-                document.location.href = "home.html?username=" + username;
+                document.location.href = "negocios.html?username=" + username;
             } else {
                 $("#login-error").removeClass("d-none");
             }
