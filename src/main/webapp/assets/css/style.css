@@ -1703,3 +1703,12 @@ section {
   font-size: 15px;
   color:#043d15;
 }
+
+.text-reg2 {
+  font-size: 16px;
+  color:#043d15;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+}
