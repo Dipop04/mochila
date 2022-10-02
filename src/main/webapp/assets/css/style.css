@@ -1694,3 +1694,21 @@ section {
 .btn .btn-buy{
   background: #3ac162;
 }
+
+.text-reg {
+  font-size: 12px;
+}
+
+.text-reg1 {
+  font-size: 15px;
+  color:#043d15;
+}
+
+.text-reg2 {
+  font-size: 16px;
+  color:#043d15;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+}
