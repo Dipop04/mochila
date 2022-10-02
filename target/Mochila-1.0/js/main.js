@@ -7,8 +7,13 @@ $(document).ready(function () {
     });
 
     getUsuario().then(function () {
+        $("#inicio-lnk").attr("href", `inicio.html?username=${username}`);
+        $("#alInicio-lnk").attr("href", `inicio.html?username=${username}`);
+        $("#negocios-lnk").attr("href", `negocios.html?username=${username}`);
         $("#negocio-btn").attr("href", `negocios.html?username=${username}`);
-        $("#contacto-btn").attr("href", `contacto.html?username=${username}`);
+        $("#itinerario-lnk").attr("href", `itinerario.html?username=${username}`);
+        $("#equipo-lnk").attr("href", `equipo.html?username=${username}`);
+        $("#contacto-lnk").attr("href", `contacto.html?username=${username}`);
         $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
 
         getNegocio(false, 'ASC');

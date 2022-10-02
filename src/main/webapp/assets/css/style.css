@@ -551,6 +551,7 @@ h6 {
   margin-top: 30px;
   border: 2px solid #fff;
   color: #fff;
+  cursor:pointer;
 }
 
 #hero .btn-get-started:hover {

@@ -65,7 +65,7 @@ function autenticarUsuarioNegocio() {
             if (parsedResult != false) {
                 $("#login-error").addClass("d-none");
                 let username = parsedResult['username'];
-                document.location.href = "negocios.html?username=" + username;
+                document.location.href = "inicio.html?username=" + username;
             } else {
                 $("#login-error").removeClass("d-none");
             }
@@ -106,7 +106,7 @@ function registrarUsuario() {
                 if (parsedResult !== false) {
                     $("#register-error").addClass("d-none");
                     let username = parsedResult['username'];
-                    document.location.href = "negocios.html?username=" + username;
+                    document.location.href = "inicio.html?username=" + username;
                 } else {
                     $("#register-error").removeClass("d-none");
                     $("#register-error").html("Error en el registro del usuario");
