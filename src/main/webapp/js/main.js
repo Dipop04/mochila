@@ -2,67 +2,69 @@ var username = new URL(location.href).searchParams.get('username');
 var user;
 
 $(document).ready(function () {
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 
-  getUsuario().then(function () {
-    $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
+    getUsuario().then(function () {
+        $("#negocio-btn").attr("href", `negocios.html?username=${username}`);
+        $("#contacto-btn").attr("href", `contacto.html?username=${username}`);
+        $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
 
-    getNegocio(false, 'ASC');
+        getNegocio(false, 'ASC');
 
-    $('#ordenar-servicio').click(ordenarNegocio);
-  });
+        $('#ordenar-servicio').click(ordenarNegocio);
+    });
 });
 
 async function getUsuario() {
-  await $.ajax({
-    type: 'GET',
-    dataType: 'html',
-    url: './ServletUsuarioPedir',
-    data: $.param({
-      username: username,
-    }),
-    success: function (result) {
-      let parsedResult = JSON.parse(result);
+    await $.ajax({
+        type: 'GET',
+        dataType: 'html',
+        url: './ServletUsuarioPedir',
+        data: $.param({
+            username: username,
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
 
-      if (parsedResult != false) {
-        user = parsedResult;
-        console.log('nombre???', user.nombre)
-        $('#Saludando').html(user.nombre);
-      } else {
-        console.log('Error recuperando los datos del usuario');
-      }
-    },
-  });
+            if (parsedResult != false) {
+                user = parsedResult;
+                console.log('nombre???', user.nombre)
+                $('#Saludando').html(user.nombre);
+            } else {
+                console.log('Error recuperando los datos del usuario');
+            }
+        },
+    });
 }
 // debugger;
 function getNegocio(ordenar, orden) {
-  $.ajax({
-    type: 'GET',
-    dataType: 'html',
-    url: './ServletNegocioListar',
-    data: $.param({
-      ordenar: ordenar,
-      orden: orden,
-    }),
-    success: function (result) {
-      let parsedResult = JSON.parse(result);
+    $.ajax({
+        type: 'GET',
+        dataType: 'html',
+        url: './ServletNegocioListar',
+        data: $.param({
+            ordenar: ordenar,
+            orden: orden,
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
 
-      if (parsedResult != false) {
-        mostrarNegocios(parsedResult);
-      } else {
-        console.log('Error recuperando los datos de los negocios');
-      }
-    },
-  });
+            if (parsedResult != false) {
+                mostrarNegocios(parsedResult);
+            } else {
+                console.log('Error recuperando los datos de los negocios');
+            }
+        },
+    });
 }
 let contenido = '';
 const mostrarNegocios = (negocios) => {
-  negocios.map((negocio, idx) => {
-    negocio = JSON.parse(negocio);
+    negocios.map((negocio, idx) => {
+        negocio = JSON.parse(negocio);
 
-    contenido += `<div class="course-item col-4" id="negocio-item">
+        contenido += `<div class="course-item col-4" id="negocio-item">
         <img src="${negocio.imagen}" class=" img-tarjeta img-fluid" alt="...">
         <div class="course-content">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -86,9 +88,9 @@ const mostrarNegocios = (negocios) => {
             <button onclick="itinerarioNegocio(${negocio.id});" class="btn btn-success" >Reservar</button>
         </div>
     </div>`;
-    $('#contenedorNegocios').html(contenido);
-    console.log('index Arr', idx + 1);
-  });
+        $('#contenedorNegocios').html(contenido);
+        console.log('index Arr', idx + 1);
+    });
 };
 
 
@@ -150,38 +152,38 @@ const mostrarNegocios = (negocios) => {
 // }
 
 function ordenarNegocio() {
-  if ($('#icono-ordenar').hasClass('fa-sort')) {
-    getNegocio(true, 'ASC');
-    $('#icono-ordenar').removeClass('fa-sort');
-    $('#icono-ordenar').addClass('fa-sort-down');
-  } else if ($('#icono-ordenar').hasClass('fa-sort-down')) {
-    getNegocio(true, 'DESC');
-    $('#icono-ordenar').removeClass('fa-sort-down');
-    $('#icono-ordenar').addClass('fa-sort-up');
-  } else if ($('#icono-ordenar').hasClass('fa-sort-up')) {
-    getNegocio(false, 'ASC');
-    $('#icono-ordenar').removeClass('fa-sort-up');
-    $('#icono-ordenar').addClass('fa-sort');
-  }
+    if ($('#icono-ordenar').hasClass('fa-sort')) {
+        getNegocio(true, 'ASC');
+        $('#icono-ordenar').removeClass('fa-sort');
+        $('#icono-ordenar').addClass('fa-sort-down');
+    } else if ($('#icono-ordenar').hasClass('fa-sort-down')) {
+        getNegocio(true, 'DESC');
+        $('#icono-ordenar').removeClass('fa-sort-down');
+        $('#icono-ordenar').addClass('fa-sort-up');
+    } else if ($('#icono-ordenar').hasClass('fa-sort-up')) {
+        getNegocio(false, 'ASC');
+        $('#icono-ordenar').removeClass('fa-sort-up');
+        $('#icono-ordenar').addClass('fa-sort');
+    }
 }
 
 function itinerarioNegocio(id) {
-  $.ajax({
-    type: 'GET',
-    dataType: 'html',
-    url: './ServletNegocioItinerario',
-    data: $.param({
-      id: id,
-      username: username,
-    }),
-    success: function (result) {
-      let parsedResult = JSON.parse(result);
+    $.ajax({
+        type: 'GET',
+        dataType: 'html',
+        url: './ServletNegocioItinerario',
+        data: $.param({
+            id: id,
+            username: username,
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
 
-      if (parsedResult != false) {
-        location.reload();
-      } else {
-        console.log('Error en la reserva del negocio');
-      }
-    },
-  });
+            if (parsedResult != false) {
+                location.reload();
+            } else {
+                console.log('Error en la reserva del negocio');
+            }
+        },
+    });
 }
