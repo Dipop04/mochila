@@ -34,8 +34,8 @@ public class ServletNegocioRetirar extends HttpServlet {
 		// TODO Auto-generated method stub
 		NegocioController negocio = new NegocioController();
 		
-		String username = request.getParameter("username");
 		int id = Integer.parseInt(request.getParameter("id"));
+		String username = request.getParameter("username");
 		
 		String libroStr = negocio.retirar(id,username);
 		
