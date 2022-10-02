@@ -851,6 +851,10 @@ section {
 #contenedorNegocios {
   display: contents !important;
 }
+#contenedorItinerario {
+  display: contents !important;
+}
+
 .courses .course-content h3 {
   font-weight: 700;
   font-size: 20px;
