@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
     <head>
         <meta charset="utf-8">
@@ -26,51 +26,22 @@
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
         <!-- Template Main CSS File -->
-        <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lnTgKRssIgd0J6rH-0Zp1kIvjmkw2RnPAPZi96BhWc72j78Cnk8pGQ8_eElKLG6cr898pC9JQ8TyLaHd_ZuxP3ueTj59HjNuJ1RwHKDZBG_qG76h1LbWMT8UFAlAJQd4_m3GdYi1zT9PxleEdEpxI1IzLUpvfFd8bnbeyu33Lxc" charset="UTF-8"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="assets/css/style.css" rel="stylesheet">
+        <script src="js/index.js"></script>
 
 
     </head>
 
     <body>
-                <!-- ======= Header ======= -->
-                <header id="header" class="fixed-top">
-                    <div class="container d-flex align-items-center">
-                        <h1 class="logo me-auto">
-                            <a id="alInicio-lnk">Qué hay pa' hacer hoy?</a>
-                        </h1>
-                        <nav id="navbar" class="navbar order-last order-lg-0">
-                            <ul>
-                              <li><a id="inicio-lnk">Inicio</a></li>
-                              <li><a id="negocios-lnk">Negocios</a></li>
-                              <li><a id="itinerario-lnk">Itinerario</a></li>
-                              <li><a id="equipo-lnk">Equipo</a></li>
-                              <li><a id="contacto-lnk">Contacto</a></li>
-                              <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" id="ajustes" data-bs-toggle="dropdown">Ajustes</a>
-                                <div class="dropdown-menu" id="main-menu">
-                                  <a id="mi-perfil-btn" class="dropdown-item">Mi perfil</a>
-                                  <a href="index.html" class="dropdown-item">Salir</a>
-                                </div>
-                            </li>
-                            </ul>
-                            <i class="bi bi-list mobile-nav-toggle"></i>
-                          </nav>
-                          <!-- .navbar -->
-        
-                        <!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
-                    </div>
-                </header>
-                <!-- End Header -->
         <main id="main">
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
-                    <h2>ACtualiza tu perfil</h2>
+                    <h2>Actualiza tu perfil</h2>
                     <p>Te invitamos a que actualices tus datos para que puedas acceder a todas nuestra sugerencias</p>
                 </div>
             </div><!-- End Breadcrumbs -->
-
             <!-- ======= Contact Section ======= -->
             <section id="contact" class="contact">
 
@@ -83,39 +54,59 @@
 
                         <div class="col-lg-8 mt-5 mt-lg-0">
 
-                            <form method="GET" id="form-modificar" class="row needs-validation">
+                            <form id="form-modificar" class="row needs-validation">
                                 <div class="col-md-12 position-relative">
                                     <label for="input-username" class="form-label">Nombre de usuario</label>
-                                    <input type="text" class="form-control disabled" id="input-username" value="" readonly>
+                                    <input type="text" class="form-control" id="input-username" value="" required>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
-
                                 <div class="col-md-12 position-relative">
                                     <label for="input-contrasena" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="input-contrasena" placeholder="Contraseña" required>
+                                    <input type="password" class="form-control" id="input-contrasena" value="" required>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
                                 <div class="col-md-12 position-relative">
                                     <label for="input-cedula" class="form-label">Cédula</label>
-                                    <input type="text" class="form-control" id="input-cedula" placeholder="Cédula" required>
+                                    <input type="number" class="form-control" id="input-cedula" value="" required>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
                                 <div class="col-md-12 position-relative">
                                     <label for="input-nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="input-nombre" placeholder="Nombre" required>
+                                    <input type="text" class="form-control" id="input-nombre" value="" required>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
                                 <div class="col-md-12 position-relative">
                                     <label for="input-apellidos" class="form-label">Apellidos</label>
-                                    <input type="text" class="form-control" id="input-apellidos" placeholder="Apellidos" required>
+                                    <input type="text" class="form-control" id="input-apellidos" value="" required>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
                                 <div class="col-md-12 position-relative">
                                     <label for="input-email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="input-email" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="input-email" value="" required>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
                                 <div class="col-md-12 position-relative">
-                                    <input type="checkbox" class="" id="input-rol" value="" required>
+                                    <input type="checkbox" class="" id="input-rol" value="">
                                     <label for="input-rol" class="form-check-label">¿Tienes un negocio asociado?</label>
+                                    <div class="valid-tooltip">
+                                        ¡Todo bien!
+                                    </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <button class="btn btn-success" type="submit">Guardar datos</button>
+                                    <button class="btn btn-success" type="submit" id="modificar-btn">Guardar datos</button>
                                 </div>
                             </form>
                             <div class="alert alert-danger d-none" id="modificar-error" role="alert">
@@ -124,11 +115,39 @@
                             <div id="modificar-exito" class="alert alert-success d-none" role="alert">
                                 Modificación de los datos del usuario realizada correctamente
                             </div>
+                            <div class="mt-4">
+                                <button class="btn btn-danger" id="eliminar-cuenta-btn" data-toggle="modal" 
+                                        data-target="#eliminar-cuenta-modal">Eliminar cuenta</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section><!-- End Contact Section -->
+            <div class="modal fade" id="eliminar-cuenta-modal" tabindex="-1" role="dialog" 
+                 aria-labelledby="eliminar-cuenta-modal-label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-tittle" id="eliminar-cuenta-modal-header">¿Eliminar cuenta?</h5>
+                            <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Eliminar una cuenta es una acción que no se puede restaurar. ¿Está seguro?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" 
+                                    data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" 
+                                    id="aceptar-eliminar-cuenta-btn">Eliminar cuenta</button>
                         </div>
                     </div>
                 </div>
-            </section><!-- End Contact Section -->
-
+            </div>
         </main><!-- End #main -->
 
         <!-- ======= Footer ======= -->
@@ -164,7 +183,12 @@
         <script src="assets/vendor/php-email-form/validate.js"></script>
 
         <!-- Template Main JS File -->
+        <script src="assets/js/main.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="js/profile.js"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </body>
 
