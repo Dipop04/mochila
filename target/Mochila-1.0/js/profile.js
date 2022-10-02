@@ -1,12 +1,32 @@
 var username = new URL(location.href).searchParams.get("username");
 var user;
 
+
+
+
 $(document).ready(function () {
 
+
+    getUsuario().then(function () {
+        $("#inicio-lnk").attr("href", `inicio.html?username=${username}`);
+        $("#alInicio-lnk").attr("href", `inicio.html?username=${username}`);
+        $("#negocios-lnk").attr("href", `negocios.html?username=${username}`);
+        $("#negocio-btn").attr("href", `negocios.html?username=${username}`);
+        $("#itinerario-lnk").attr("href", `itinerario.html?username=${username}`);
+        $("#equipo-lnk").attr("href", `equipo.html?username=${username}`);
+        $("#contacto-lnk").attr("href", `contacto.html?username=${username}`);
+        $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
+
+        getNegocio(false, 'ASC');
+
+        $('#ordenar-servicio').click(ordenarNegocio);
+    });
 
     fillUsuario().then(function () {
 
         getItinerario(user.username);
+
+
     });
 
     $("#reservar-btn").attr("href", `negocios.html?username=${username}`);
@@ -25,6 +45,29 @@ $(document).ready(function () {
     })
 
 });
+
+async function getUsuario() {
+    await $.ajax({
+        type: 'GET',
+        dataType: 'html',
+        url: './ServletUsuarioPedir',
+        data: $.param({
+            username: username,
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+
+            if (parsedResult != false) {
+                user = parsedResult;
+                console.log('nombre???', user.nombre)
+                $('#Saludando').html(user.nombre);
+            } else {
+                console.log('Error recuperando los datos del usuario');
+            }
+        },
+    });
+}
+
 
 async function fillUsuario() {
     await $.ajax({
@@ -70,7 +113,7 @@ function getItinerario(username) {
 
             if (parsedResult != false) {
 
-                mostrarHistorial(parsedResult)
+                mostrarHistorial2(parsedResult)
 
             } else {
                 console.log("Error recuperando los datos del itinerario");
@@ -78,6 +121,46 @@ function getItinerario(username) {
         }
     });
 }
+
+
+let contenido = '';
+const mostrarHistorial2 = (negocios) => {
+    negocios.map((negocio, idx) => {
+        negocio = JSON.parse(negocio);
+
+        contenido += `<div class="course-item col-4" id="negocio-item">
+        <img src="${negocio.imagen}" class=" img-tarjeta img-fluid" alt="...">
+        <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>${negocio.servicio}</h4>
+                <p class="price">$${negocio.precio_minimo}</p>
+            </div>
+
+            <h3><a href="${negocio.url}">${negocio.nombre_negocio}</a></h3>
+            <p>${negocio.descripcion}</p>
+            <div>
+            <ul>
+                <li>${negocio.direccion}</li>
+                <li>${negocio.zona}</li>
+                <li>${negocio.precio_maximo}</li>
+                <li>${negocio.hora_abierto}</li>
+                <li>${negocio.hora_cierre}</li>
+                <li>${negocio.dias}</li>
+                <li><a href="${negocio.ubicacion}">Ubicación</a></li>
+            </ul>
+            </div>
+            <button id="devolver-btn" onclick="retirarNegocio(${negocio.id});" class="btn btn-danger" >Cancelar reserva</button>
+        </div>
+    </div>`;
+        $('#contenedorItinerario').html(contenido);
+        console.log('index Arr', idx + 1);
+    });
+};
+
+
+
+
+
 
 function mostrarHistorial(negocio) {
     let contenido = "";
@@ -111,8 +194,8 @@ function retirarNegocio(id) {
         dataType: "html",
         url: "./ServletNegocioRetirar",
         data: $.param({
-            username: username,
             id: id,
+            username: username,
         }),
         success: function (result) {
 

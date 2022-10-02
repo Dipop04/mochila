@@ -23,6 +23,10 @@ $(document).ready(function () {
             location.href = "index.html";
         })
     })
+    $("#devolver-btn").click((event)=>{
+        event.preventDefault();
+        retirarNegocio();
+    })
 
 });
 
