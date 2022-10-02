@@ -7,7 +7,7 @@ $(document).ready(function () {
   });
 
   getUsuario().then(function () {
-    $('#mi-perfil-btn').attr('href', 'profile.html?username=' + username);
+    $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
 
     getNegocio(false, 'ASC');
 
@@ -28,6 +28,8 @@ async function getUsuario() {
 
       if (parsedResult != false) {
         user = parsedResult;
+        console.log('nombre???', user.nombre)
+        $('#Saludando').html(user.nombre);
       } else {
         console.log('Error recuperando los datos del usuario');
       }
@@ -89,61 +91,63 @@ const mostrarNegocios = (negocios) => {
   });
 };
 
-function mostrarNegociosOLD(negocio) {
-  let contenido = '';
-  $.each(negocio, function (index, negocio) {
-    negocio = JSON.parse(negocio);
-    contenido +=
-      '<tr><th scope="row">' +
-      negocio.id +
-      '</th>' +
-      '<td>' +
-      negocio.servicio +
-      '</td>' +
-      '<td>' +
-      negocio.nombre_negocio +
-      '</td>' +
-      '<td><img src="' +
-      negocio.imagen +
-      '" class="card-img-top"></td>' +
-      '<td>' +
-      negocio.direccion +
-      '</td>' +
-      '<td>' +
-      negocio.zona +
-      '</td>' +
-      '<td>' +
-      negocio.precio_minimo +
-      '</td>' +
-      '<td>' +
-      negocio.precio_maximo +
-      '</td>' +
-      '<td>' +
-      negocio.hora_abierto +
-      '</td>' +
-      '<td>' +
-      negocio.hora_cierre +
-      '</td>' +
-      '<td>' +
-      negocio.dias +
-      '</td>' +
-      '<td>' +
-      negocio.ubicacion +
-      '</td>' +
-      //'<td><iframe style="border:0; width: 100%; height: 100%;" src="' + negocio.ubicacion + '" frameborder="0" allowfullscreen></iframe></td>' +
-      '<td><a href=">' +
-      negocio.url +
-      '">Página web</a></td>' +
-      //'<td>' + negocio.url + '</td>' +
-      '<td>' +
-      negocio.descripcion +
-      '</td>' +
-      '<td><button onclick="itinerarioNegocio(' +
-      negocio.id +
-      ');" class="btn btn-success" >Reservar</button></td></tr>';
-  });
-  $('#negocio-tbody').html(contenido);
-}
+
+
+// function mostrarNegociosOLD(negocio) {
+//   let contenido = '';
+//   $.each(negocio, function (index, negocio) {
+//     negocio = JSON.parse(negocio);
+//     contenido +=
+//       '<tr><th scope="row">' +
+//       negocio.id +
+//       '</th>' +
+//       '<td>' +
+//       negocio.servicio +
+//       '</td>' +
+//       '<td>' +
+//       negocio.nombre_negocio +
+//       '</td>' +
+//       '<td><img src="' +
+//       negocio.imagen +
+//       '" class="card-img-top"></td>' +
+//       '<td>' +
+//       negocio.direccion +
+//       '</td>' +
+//       '<td>' +
+//       negocio.zona +
+//       '</td>' +
+//       '<td>' +
+//       negocio.precio_minimo +
+//       '</td>' +
+//       '<td>' +
+//       negocio.precio_maximo +
+//       '</td>' +
+//       '<td>' +
+//       negocio.hora_abierto +
+//       '</td>' +
+//       '<td>' +
+//       negocio.hora_cierre +
+//       '</td>' +
+//       '<td>' +
+//       negocio.dias +
+//       '</td>' +
+//       '<td>' +
+//       negocio.ubicacion +
+//       '</td>' +
+//       //'<td><iframe style="border:0; width: 100%; height: 100%;" src="' + negocio.ubicacion + '" frameborder="0" allowfullscreen></iframe></td>' +
+//       '<td><a href=">' +
+//       negocio.url +
+//       '">Página web</a></td>' +
+//       //'<td>' + negocio.url + '</td>' +
+//       '<td>' +
+//       negocio.descripcion +
+//       '</td>' +
+//       '<td><button onclick="itinerarioNegocio(' +
+//       negocio.id +
+//       ');" class="btn btn-success" >Reservar</button></td></tr>';
+//   });
+//   $('#negocio-tbody').html(contenido);
+// }
 
 function ordenarNegocio() {
   if ($('#icono-ordenar').hasClass('fa-sort')) {

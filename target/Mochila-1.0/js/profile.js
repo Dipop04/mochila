@@ -9,7 +9,7 @@ $(document).ready(function () {
         getItinerario(user.username);
     });
 
-    $("#reservar-btn").attr("href", `home.html?username=${username}`);
+    $("#reservar-btn").attr("href", `negocios.html?username=${username}`);
 
     $("#form-modificar").on("submit", function (event) {
 

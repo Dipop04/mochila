@@ -51,18 +51,13 @@
             <li><a href="courses.html">Negocios</a></li>
             <li><a href="equipo.html">Equipo</a></li>
             <li><a href="contacto.html">Contacto</a></li>
-            <li <div id="user-data-profile">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span id="ajustes">Ajustes </span>
-                    </button>
-                    <div class="dropdown-menu" id="main-menu">
-                        <a id="mi-perfil-btn" class="dropdown-item">Mi perfil</a>
-                        <a id="salir-btn" class="dropdown-item" href="index.html">Salir</a>
-                    </div>
-                </div>
-            </div></li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="ajustes" data-bs-toggle="dropdown">Ajustes</a>
+              <div class="dropdown-menu" id="main-menu">
+                <a id="mi-perfil-btn" class="dropdown-item">Mi perfil</a>
+                <a id="salir-btn" class="dropdown-item" href="index.html">Salir</a>
+              </div>
+          </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -191,8 +186,10 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="assets/js/main.js"></script>
-
+  
 </body>
 
 </html>
