@@ -2,6 +2,7 @@ var username = new URL(location.href).searchParams.get('username');
 var user;
 
 $(document).ready(function () {
+    // const nombreUsuario = ${user.nombre}
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
@@ -35,8 +36,8 @@ async function getUsuario() {
 
             if (parsedResult != false) {
                 user = parsedResult;
-                console.log('nombre???', user.nombre)
                 $('#Saludando').html(user.nombre);
+                $('.userNombre').html(user.nombre);
             } else {
                 console.log('Error recuperando los datos del usuario');
             }
@@ -59,6 +60,8 @@ function getNegocio(ordenar, orden) {
             if (parsedResult != false) {
                 mostrarNegocios(parsedResult);
             } else {
+                contenido = `<h1>Lo sentimos. En este momento no hay negocios disponibles.</h1>`
+                $('#contenedorNegocios').html(contenido);
                 console.log('Error recuperando los datos de los negocios');
             }
         },
@@ -73,7 +76,7 @@ const mostrarNegocios = (negocios) => {
         <img src="${negocio.imagen}" class=" img-tarjeta img-fluid" alt="...">
         <div class="course-content">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>${negocio.servicio}</h4>
+                <h4 class="badge rounded-pill bg-info">${negocio.servicio}</h4>
                 <p class="price">$${negocio.precio_minimo}</p>
             </div>
 
@@ -94,7 +97,6 @@ const mostrarNegocios = (negocios) => {
         </div>
     </div>`;
         $('#contenedorNegocios').html(contenido);
-        console.log('index Arr', idx + 1);
     });
 };
 
