@@ -11,6 +11,7 @@ $(document).ready(function () {
         $("#alInicio-lnk").attr("href", `inicio.html?username=${username}`);
         $("#negocios-lnk").attr("href", `negocios.html?username=${username}`);
         $("#negocio-btn").attr("href", `negocios.html?username=${username}`);
+        $(".ir-negocios").attr("href", `negocios.html?username=${username}`);
         $("#itinerario-lnk").attr("href", `itinerario.html?username=${username}`);
         $("#equipo-lnk").attr("href", `equipo.html?username=${username}`);
         $("#contacto-lnk").attr("href", `contacto.html?username=${username}`);
