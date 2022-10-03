@@ -12,14 +12,15 @@ $(document).ready(function () {
         $("#alInicio-lnk").attr("href", `inicio.html?username=${username}`);
         $("#negocios-lnk").attr("href", `negocios.html?username=${username}`);
         $("#negocio-btn").attr("href", `negocios.html?username=${username}`);
+        $(".ir-negocio").attr("href", `negocios.html?username=${username}`);
         $("#itinerario-lnk").attr("href", `itinerario.html?username=${username}`);
         $("#equipo-lnk").attr("href", `equipo.html?username=${username}`);
         $("#contacto-lnk").attr("href", `contacto.html?username=${username}`);
         $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
 
-        getNegocio(false, 'ASC');
+        // getNegocio(false, 'ASC');
 
-        $('#ordenar-servicio').click(ordenarNegocio);
+        // $('#ordenar-servicio').click(ordenarNegocio);
     });
 
     fillUsuario().then(function () {
@@ -58,16 +59,15 @@ async function getUsuario() {
             let parsedResult = JSON.parse(result);
 
             if (parsedResult != false) {
-                user = parsedResult;
-                console.log('nombre???', user.nombre)
+                var user = parsedResult;
                 $('#Saludando').html(user.nombre);
+                $('.userNombre').html(user.nombre);
             } else {
                 console.log('Error recuperando los datos del usuario');
             }
         },
     });
 }
-
 
 async function fillUsuario() {
     await $.ajax({
@@ -100,7 +100,6 @@ async function fillUsuario() {
 
 function getItinerario(username) {
 
-
     $.ajax({
         type: "GET",
         dataType: "html",
@@ -113,82 +112,50 @@ function getItinerario(username) {
 
             if (parsedResult != false) {
 
-                mostrarHistorial2(parsedResult)
+                mostrarHistorial(parsedResult)
 
             } else {
+                let contenido = `<h1>${user.nombre}, no tienes itinerario agendados para ti en este momento. <a class='ir-negocio'>¡Comencemos!</a></h1>`
+                $('#contenedorItinerario').html(contenido);
                 console.log("Error recuperando los datos del itinerario");
             }
         }
     });
 }
 
-
 let contenido = '';
-const mostrarHistorial2 = (negocios) => {
-    negocios.map((negocio, idx) => {
-        negocio = JSON.parse(negocio);
-
+const mostrarHistorial = (itinerarios) => {
+        itinerarios.map((itinerario, idx) => {
+        itinerario = JSON.parse(itinerario);
         contenido += `<div class="course-item col-4" id="negocio-item">
-        <img src="${negocio.imagen}" class=" img-tarjeta img-fluid" alt="...">
+        <img src="${itinerario.imagen}" class=" img-tarjeta img-fluid" alt="...">
         <div class="course-content">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4>${negocio.servicio}</h4>
-                <p class="price">$${negocio.precio_minimo}</p>
+                <h4 class="badge rounded-pill bg-info">${itinerario.servicio}</h4>
+                <p class="price">$${itinerario.precio_minimo}</p>
             </div>
 
-            <h3><a href="${negocio.url}">${negocio.nombre_negocio}</a></h3>
-            <p>${negocio.descripcion}</p>
+            <h3><a href="${itinerario.url}">${itinerario.nombre_negocio}</a></h3>
+            <p>${itinerario.descripcion}</p>
             <div>
             <ul>
-                <li>${negocio.direccion}</li>
-                <li>${negocio.zona}</li>
-                <li>${negocio.precio_maximo}</li>
-                <li>${negocio.hora_abierto}</li>
-                <li>${negocio.hora_cierre}</li>
-                <li>${negocio.dias}</li>
-                <li><a href="${negocio.ubicacion}">Ubicación</a></li>
+                <li>${itinerario.direccion}</li>
+                <li>${itinerario.zona}</li>
+                <li>${itinerario.precio_maximo}</li>
+                <li>${itinerario.hora_abierto}</li>
+                <li>${itinerario.hora_cierre}</li>
+                <li>${itinerario.dias}</li>
+                <li><a href="${itinerario.ubicacion}">Ubicación</a></li>
             </ul>
             </div>
-            <button id="devolver-btn" onclick="retirarNegocio(${negocio.id});" class="btn btn-danger" >Cancelar reserva</button>
+            <button id="devolver-btn" onclick="retirarNegocio(${itinerario.id});" class="btn btn-danger" >Cancelar reserva</button>
         </div>
-    </div>`;
+        </div>`;
         $('#contenedorItinerario').html(contenido);
-        console.log('index Arr', idx + 1);
     });
 };
 
-
-
-
-
-
-function mostrarHistorial(negocio) {
-    let contenido = "";
-    if (negocio.length >= 1) {
-        $.each(negocio, function (index, negocio) {
-            negocio = JSON.parse(negocio);
-
-            contenido += '<tr><th scope="row">' + negocio.id + '</th>' +
-                    '<td>' + negocio.nombre_negocio + '</td>' +
-                    '<td>' + negocio.fecha_inicio + '</td>' +
-                    '<td>' + negocio.servicio + '</td>' +
-                    '<td><button id="devolver-btn" onclick= "retirarNegocio(' + negocio.id
-                    + ');" class="btn btn-danger">Retirar negocio</button></td></tr>';
-
-        });
-        $("#historial-tbody").html(contenido);
-        $("#historial-table").removeClass("d-none");
-        $("#historial-vacio").addClass("d-none");
-
-    } else {
-        $("#historial-vacio").removeClass("d-none");
-        $("#historial-table").addClass("d-none");
-    }
-}
-
-
 function retirarNegocio(id) {
-
     $.ajax({
         type: "GET",
         dataType: "html",
