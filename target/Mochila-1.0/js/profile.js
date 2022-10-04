@@ -135,17 +135,16 @@ const mostrarHistorial = (itinerarios) => {
                 <p class="price">$${itinerario.precio_minimo}</p>
             </div>
 
-            <h3><a href="${itinerario.url}">${itinerario.nombre_negocio}</a></h3>
+            <h3><a href="${itinerario.url} target="_blank"">${itinerario.nombre_negocio}</a></h3>
             <p>${itinerario.descripcion}</p>
             <div>
             <ul>
-                <li>${itinerario.direccion}</li>
-                <li>${itinerario.zona}</li>
-                <li>${itinerario.precio_maximo}</li>
-                <li>${itinerario.hora_abierto}</li>
-                <li>${itinerario.hora_cierre}</li>
-                <li>${itinerario.dias}</li>
-                <li><a href="${itinerario.ubicacion}">Ubicación</a></li>
+            <li>Dirección: ${itinerario.direccion}</li>
+            <li>Zona: ${itinerario.zona}</li>
+            <li>Días de apertura: ${itinerario.dias}</li>
+            <li>Horario de atención: ${itinerario.hora_abierto} - ${itinerario.hora_cierre}</li>
+            <li>Rango de precios: $${itinerario.precio_maximo} - $${itinerario.precio_minimo}</li>
+            <li><a href="${itinerario.ubicacion}" target="_blank">Ubicación</a></li>
             </ul>
             </div>
             <button id="devolver-btn" onclick="retirarNegocio(${itinerario.id});" class="btn btn-danger" >Cancelar reserva</button>
