@@ -17,6 +17,7 @@ $(document).ready(function () {
         $("#equipo-lnk").attr("href", `equipo.html?username=${username}`);
         $("#contacto-lnk").attr("href", `contacto.html?username=${username}`);
         $('#mi-perfil-btn').attr('href', 'actualizarperfil.html?username=' + username);
+        $('#mi-inicio-btn').attr('href', 'inicio.html?username=' + username);
 
         // getNegocio(false, 'ASC');
 
